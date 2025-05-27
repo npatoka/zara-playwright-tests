@@ -2,7 +2,6 @@ import { test, expect } from '../app/fixtures/page-fixtures';
 import validationMessages from '../app/fixtures/validation-error-messages.json' assert {type: 'json'};
 import * as RegistrationData from '../app/helper/registrationData.ts';
 
-
 test.describe('Zara user journey: from cookie modal to registration', () => {
   test('TC-1 Search item by name and add all sizes', async ({ mainPage, cartPage, basePageWithCookies, basePage }) => {
     const itemName = "Boots"
@@ -16,6 +15,7 @@ test.describe('Zara user journey: from cookie modal to registration', () => {
     await basePage.clickShoppingBagButton();
     await cartPage.cartMatchesAddedSizes(added);
   });
+
   test('TC-2 Remove every second item from shopping bag', async ({ mainPage, cartPage, basePageWithCookies, basePage }) => {
     const itemName = "Dress"
     const minSizes = 4
@@ -54,6 +54,8 @@ test.describe('Zara user journey: from cookie modal to registration', () => {
     await personalDetailsPage.clickCreateAccountButton();
     expect(await personalDetailsPage.getErrorMessage()).toEqual(validationMessages.invalidFormatEmailMessage);
   });
+
+
   test('TC-4 Check the error message for incorrectly filled Password field in registration form', async ({ mainPage, cartPage, basePageWithCookies, basePage, registerPage, personalDetailsPage }) => {
     const itemName = 'Shirt';
     const minSizes = 4;
