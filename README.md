@@ -48,6 +48,7 @@ This repository contains end-to-end (E2E) tests for Zara's website using [Playwr
 │   └── ...
 └── test-results/                    # Saved traces, screenshots, etc.
 
+```
 
 ---
 
