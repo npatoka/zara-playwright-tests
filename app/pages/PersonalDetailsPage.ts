@@ -41,5 +41,19 @@ export class PersonalDetailsPage {
     async clickCreateAccountButton() {
         await this.createAccountButton.click();
     }
+
+    async fillRegistrationForm({ email, password, name, surname, }:{
+      email?: string;
+      password?: string;
+      name?: string;
+      surname?: string;
+    }) {
+    if (email) await this.emailField.fill(email);
+    if (password) await this.passwordField.fill(password);
+    if (name) await this.nameField.fill(name);
+    if (surname) await this.surnameField.fill(surname);
+
+    await this.checkPrivacyCheckbox();
+  }
 }
 
