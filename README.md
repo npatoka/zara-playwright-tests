@@ -17,6 +17,7 @@ This repository contains end-to-end (E2E) tests for Zara's website using [Playwr
 
 ## Project Structure
 
+```text
 .
 ├── .github/workflows/               # GitHub Actions CI config
 │   └── playwright.yml
