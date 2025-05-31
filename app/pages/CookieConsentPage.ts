@@ -1,12 +1,12 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class CookieConsentPage {
-  private page: Page;
+export class CookieConsentPage extends BasePage {
   private acceptCookiesButton: Locator;
   private goToStoreButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.acceptCookiesButton = this.page.locator('#onetrust-accept-btn-handler');
     this.goToStoreButton = this.page.locator('[data-qa-action="stay-in-store"]');
   }

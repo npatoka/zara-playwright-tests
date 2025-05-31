@@ -1,21 +1,21 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class PersonalDetailsPage {
-    page: Page;
-    emailField: Locator;
-    passwordField: Locator;
-    nameField: Locator;
-    surnameField: Locator;
-    preferredLanguage: Locator;
-    newsLetterCheck: Locator;
-    createAccountButton: Locator;
-    errorMessage: Locator;
-    inputNameText: Locator;
-    phoneNumberInputField: Locator;
-    privacyCheck: Locator;
+export class PersonalDetailsPage extends BasePage {
+    private emailField: Locator;
+    private passwordField: Locator;
+    private nameField: Locator;
+    private surnameField: Locator;
+    private preferredLanguage: Locator;
+    private newsLetterCheck: Locator;
+    private createAccountButton: Locator;
+    private errorMessage: Locator;
+    private inputNameText: Locator;
+    private phoneNumberInputField: Locator;
+    private privacyCheck: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
         this.emailField = this.page.locator('[data-qa-input-qualifier="email"]');
         this.passwordField = this.page.locator('[data-qa-input-qualifier="password"]');
         this.nameField = this.page.locator('[data-qa-input-qualifier="firstName"]');

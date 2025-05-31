@@ -1,12 +1,12 @@
 import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class RegisterPage {
-  page: Page;
-  logInButton: Locator;
-  registerButton: Locator;
+export class RegisterPage extends BasePage {
+  private logInButton: Locator;
+  private registerButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.registerButton = this.page.locator('[data-qa-id="logon-view-alternate-button"]');
     this.logInButton = this.page.locator('[data-qa-id="oauth-logon-button"]')
   }

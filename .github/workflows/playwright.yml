@@ -39,13 +39,6 @@ jobs:
           name: playwright-report
           path: playwright-report/
 
-      - name: Upload traces
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: traces
-          path: test-results/**/trace.zip
-
       - name: Upload screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4

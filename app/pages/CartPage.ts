@@ -1,16 +1,14 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from '../pages/BasePage';
 
-export class CartPage {
-  page: Page;
-  removeButton: Locator;
-  productName: Locator;
-  sizeName: Locator;
-  itemId: Locator;
-  continueButton: Locator;
+export class CartPage extends BasePage {
+  private productName: Locator;
+  private sizeName: Locator;
+  private itemId: Locator;
+  private continueButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
-    this.removeButton = this.page.locator('[data-qa-action="remove-order-item"]');
+    super(page);
     this.productName = this.page.locator('.shop-cart-item-header__description--product-name a');
     this.sizeName = this.page.locator('span.shop-cart-item-details-base__size');
     this.itemId = this.page.locator('[data-qa-order-item-id]')
@@ -100,7 +98,7 @@ export class CartPage {
   }
 
   async getAllOrderIds(): Promise<string[]> {
-    const orderIdLocators = this.page.locator('[data-qa-order-item-id]');
+    const orderIdLocators = this.itemId;
     const count = await orderIdLocators.count();
     const orderIds: string[] = [];
 

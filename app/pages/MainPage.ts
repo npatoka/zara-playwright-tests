@@ -1,23 +1,23 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class MainPage {
-  page: Page;
-  searchInputField: Locator;
-  searchResult: Locator;
-  sizeSelector: Locator;
-  sizeInStockLocator: Locator;
-  filtersLocator: Locator;
-  imageLocator: Locator;
-  productName: Locator;
-  closeButton: Locator;
-  logInLink: Locator;
-  continueButton: Locator;
+export class MainPage extends BasePage {
+  private searchInputField: Locator;
+  private searchResult: Locator;
+  private sizeSelector: Locator;
+  private sizeInStockLocator: Locator;
+  private filtersLocator: Locator;
+  private imageLocator: Locator;
+  private productName: Locator;
+  private closeButton: Locator;
+  private logInLink: Locator;
+  private continueButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.searchInputField = this.page.locator('[id="search-home-form-combo-input"]');
     this.searchResult = this.page.locator('[data-qa-qualifier="media-image"]');
-    this.sizeSelector = this.page.locator('[data-qa-action="product-grid-open-size-selector"]')
+    this.sizeSelector = this.page.locator('.product-add-to-cart__button-icon')
     this.sizeInStockLocator = this.page.locator('[data-qa-action]:is([data-qa-action="size-in-stock"], [data-qa-action="size-low-on-stock"])')
     this.filtersLocator = this.page.locator('#filters-text')
     this.imageLocator = this.page.locator('img[data-qa-qualifier="media-image"]');

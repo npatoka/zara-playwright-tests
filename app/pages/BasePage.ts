@@ -1,9 +1,8 @@
 import { Page, Locator } from '@playwright/test';
-
-export class BasePage {
-    page: Page;
-    searchButton: Locator;
-    shoppingBagButton: Locator;
+export abstract class BasePage {
+    protected  page: Page;
+    protected  searchButton: Locator;
+    protected  shoppingBagButton: Locator;
 
     constructor(page: Page) {
         this.page = page;

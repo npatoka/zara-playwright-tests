@@ -4,50 +4,43 @@ import { MainPage } from '../pages/MainPage';
 import { CartPage } from '../pages/CartPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { PersonalDetailsPage } from '../pages/PersonalDetailsPage';
-import { BasePage } from '../pages/BasePage';
+import type { Page } from '@playwright/test';
 
 type PageFixtures = {
-    basePageWithCookies: BasePage;
+    pageWithCookies: Page;
     cookieConsentPage: CookieConsentPage;
+    mainPage: MainPage;
     cartPage: CartPage;
     registerPage: RegisterPage;
     personalDetailsPage: PersonalDetailsPage;
-    mainPage: MainPage;
-    basePage: BasePage
 };
 
 export const test = base.extend<PageFixtures>({
-    basePageWithCookies: async ({ page }, use) => {
+    pageWithCookies: async ({ page }, use) => {
         const cookieConsentPage = new CookieConsentPage(page);
         await page.goto('ua/en');
         await cookieConsentPage.goToStore();
-        const basePage = new BasePage(page);
-        await use(basePage);
+        await use(page);
     },
 
-    basePage: async ({ page }, use) => {
-        const basePage = new BasePage(page);
-        await use(basePage);
+    cookieConsentPage: async ({ pageWithCookies }, use) => {
+        await use(new CookieConsentPage(pageWithCookies));
     },
 
-    cookieConsentPage: async ({ page }, use) => {
-        await use(new CookieConsentPage(page));
+    mainPage: async ({ pageWithCookies }, use) => {
+        await use(new MainPage(pageWithCookies));
     },
 
-    cartPage: async ({ page }, use) => {
-        await use(new CartPage(page));
+    cartPage: async ({ pageWithCookies }, use) => {
+        await use(new CartPage(pageWithCookies));
     },
 
-    mainPage: async ({ page }, use) => {
-        await use(new MainPage(page));
+    registerPage: async ({ pageWithCookies }, use) => {
+        await use(new RegisterPage(pageWithCookies));
     },
 
-    registerPage: async ({ page }, use) => {
-        await use(new RegisterPage(page));
-    },
-
-    personalDetailsPage: async ({ page }, use) => {
-        await use(new PersonalDetailsPage(page));
+    personalDetailsPage: async ({ pageWithCookies }, use) => {
+        await use(new PersonalDetailsPage(pageWithCookies));
     },
 });
 
